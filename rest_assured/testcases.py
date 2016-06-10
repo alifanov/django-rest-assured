@@ -383,6 +383,8 @@ class UpdateAPITestCaseMixin(object):
 
         if use_patch is None:
             use_patch = self.use_patch
+            
+        kwargs['format'] = self.format
 
         return self.client.patch(*args, **kwargs) if use_patch else self.client.put(*args, **kwargs)
 
