@@ -27,6 +27,7 @@ class BaseRESTAPITestCase(APITestCase):
     object = None
     #: The user instance created if the ``user_factory`` is set and used. Defaults to ``None``.
     user = None
+    format='json'
 
     def get_factory_class(self):
         """Return the factory class for generating the main object (or model instance) of this test case.
@@ -245,7 +246,7 @@ class CreateAPITestCaseMixin(object):
         if data is None:
             data = self.get_create_data()
 
-        return self.client.post(self.get_create_url(), data or {}, **kwargs)
+        return self.client.post(self.get_create_url(), data or {}, format=self.format, **kwargs)
 
     def get_lookup_from_response(self, data):
         """Return value for looking up the created object in DB.
